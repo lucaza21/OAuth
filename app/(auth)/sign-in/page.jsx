@@ -63,7 +63,7 @@ function SignIn() {
           </div>
           
           <div className="flex-wrap gap-2 min-w-[100px] w-3/4 flex items-center justify-evenly bg-slate-700 rounded-lg px-4 py-3">
-             <Button className=''>
+             <Button className='' onClick={() => handleSignIn("google")}>
                 <Image
               src={"/icons/google.svg"}
               alt="Github Logo"
