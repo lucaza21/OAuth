@@ -3,8 +3,8 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-    <div class="relative min-h-screen bg-gray-100  min-w-[300px]">
-      <div class="rounded-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+    <div className="relative min-h-screen bg-gray-100  min-w-[300px]">
+      <div className="rounded-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
               sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/8 
               min-w-[300px] aspect-square bg-blue-500">
 
