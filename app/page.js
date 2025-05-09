@@ -1,5 +1,11 @@
+import { auth, signOut } from "@/auth";
+import { Button } from "@/components/ui/button";
+import ROUTES from "./constants/route";
 
-export default function Home() {
+export default async function Home() {
+
+   const session = await auth();
+    console.log(session)
   return (
     <>
     <div className="relative min-h-screen bg-gray-100  min-w-[300px]">
@@ -9,7 +15,19 @@ export default function Home() {
         <h1 className="text-blue-600 dark:text-sky-400 text-center">
           Home Page
         </h1>
-        </div>
+        <form>
+          <Button
+            type="submit"
+            className="px-10 pt-[10px] flex justify-center"
+            formAction={async () => {
+              "use server";
+              await signOut({ redirectTo: ROUTES.SIGN_IN})
+            }}
+            >
+              Log Out
+            </Button>
+          </form>
+      </div>
     </div>
 
    
