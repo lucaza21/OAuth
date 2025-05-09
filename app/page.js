@@ -1,6 +1,5 @@
-import { auth, signOut } from "@/auth";
-import { Button } from "@/components/ui/button";
-import ROUTES from "./constants/route";
+import { auth } from "@/auth";
+import { SignOut } from "@/components/SignOutButton";
 
 export default async function Home() {
 
@@ -15,7 +14,7 @@ export default async function Home() {
         <h1 className="text-blue-600 dark:text-sky-400 text-center">
           Home Page
         </h1>
-        <form>
+        {/* <form>
           <Button
             type="submit"
             className="px-10 pt-[10px] flex justify-center"
@@ -26,7 +25,8 @@ export default async function Home() {
             >
               Log Out
             </Button>
-          </form>
+          </form> */}
+          <SignOut />
       </div>
     </div>
 
