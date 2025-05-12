@@ -1,10 +1,17 @@
 import { auth } from "@/auth";
 import { SignOut } from "@/components/SignOutButton";
+import { redirect } from "next/navigation";
+import ROUTES from "./constants/route";
 
 export default async function Home() {
 
    const session = await auth();
-    console.log(session)
+    //console.log(session)
+
+    // Si no hay sesión, redirige al login
+    if (!session) {
+    redirect(ROUTES.SIGN_IN) // asegúrate de que esta ruta sea tu login
+    }
   return (
     <>
     <div className="relative min-h-screen bg-gray-100  min-w-[300px]">
