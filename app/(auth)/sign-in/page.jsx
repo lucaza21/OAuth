@@ -7,11 +7,16 @@ import { Button } from "@/components/ui/button";
 import ROUTES from "@/app/constants/route";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import toast from "react-hot-toast";
 
 function SignIn() {  
+  const router = useRouter()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
   const handleSignIn = async (provider) => {
-    
     try{
       //throw new Error("Error")
       await signIn(provider, {
@@ -38,6 +43,24 @@ function SignIn() {
       }) */
     }
   }
+
+  const handleCredentialsLogin = async (e) => {
+    e.preventDefault()
+
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    })
+
+    if (result?.ok) {
+      toast.success("Logged in with credentials")
+      router.push(ROUTES.HOME)
+    } else {
+      toast.error("Invalid credentials")
+    }
+  }
+
   return (
     <>
     <div className="relative min-h-screen bg-gray-100  min-w-[300px]">
@@ -78,6 +101,36 @@ function SignIn() {
              </Button>
 
           </div>
+
+          {/* Credentials Form */}
+        <form onSubmit={handleCredentialsLogin} className="space-y-3">
+          <div>
+            <label className="block text-sm">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full p-2 border border-gray-300 rounded"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm">Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full p-2 border border-gray-300 rounded"
+            />
+          </div>
+
+          <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+            Log in with Email
+          </Button>
+        </form>
+
         </div>
       </div>
     </div>
